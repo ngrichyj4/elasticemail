@@ -18,6 +18,12 @@ module Elasticemail
       domain.perform
     end
 
+    def self.verify_tracking(domain=nil, apy_key=nil)
+      domain = Elasticemail::Domain::VerifyTracking.new(apy_key, domain)
+      yield domain if block_given?
+      domain.perform
+    end
+
     def self.verify_mx(domain=nil, apy_key=nil)
       domain = Elasticemail::Domain::VerifyMx.new(apy_key, domain)
       yield domain if block_given?
